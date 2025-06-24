@@ -576,3 +576,14 @@ main {
     color: #34495e; /* Slightly lighter color for answers */
     margin-bottom: 15px;
   }
+
+  html, body {
+    height: 100%;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    overflow-y: auto;   /* Allow vertical scroll */
+}
+
+.content {
+    overflow-y: auto;
+    max-height: none; /* Remove if you have height restrictions */
+}
