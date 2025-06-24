@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" translate="no">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="google" content="notranslate" />
+    <title>Adhab Study</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="app">
+        <div id="overlay"></div>
+        <button id="menu-toggle">☰</button>
+        <aside id="sidebar">
+            <nav id="subject-tabs" class="vertical-tabs" aria-label="Subjects"></nav>
+            <div id="checklist-tab" class="checklist-tab">📋 Checklist</div>
+        </aside>
+        <main>
+            <header id="header">
+                <h1 id="current-subject">اختر مادة</h1>
+                <nav id="topic-tabs" class="horizontal-tabs" aria-label="Topics"></nav>
+            </header>
+            <section id="content-area" tabindex="0" aria-live="polite" aria-atomic="true"></section>
+            <section id="checklist-home" class="checklist-home"></section>
+        </main>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>

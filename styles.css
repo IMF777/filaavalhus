@@ -1,0 +1,578 @@
+/* Reset and base */
+* {
+    box-sizing: border-box;
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: #f9f9f9;
+    color: #222;
+    height: 100vh;
+    overflow: hidden;
+    direction: rtl;
+}
+
+#app {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: inset 0 0 20px #ddd;
+}
+
+/* Sidebar on right */
+#sidebar {
+    background: #eaeaea;
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid #ccc;
+    transition: background-color 0.3s ease;
+    user-select: none;
+    padding-top: 15px;
+    box-shadow: inset 0 0 8px #bbb;
+    position: relative;
+    z-index: 10;
+}
+
+/* Subject tabs vertical */
+.vertical-tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0 10px;
+    flex-grow: 1;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #aaa transparent;
+}
+
+.vertical-tabs::-webkit-scrollbar {
+    width: 8px;
+}
+
+.vertical-tabs::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.vertical-tabs::-webkit-scrollbar-thumb {
+    background-color: #aaa;
+    border-radius: 4px;
+}
+
+/* Each subject tab */
+.subject-tab {
+    padding: 14px 16px;
+    cursor: pointer;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1.15rem;
+    color: #555;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-align: center;
+    user-select: none;
+    box-shadow: 0 0 3px transparent;
+}
+
+.subject-tab:hover {
+    background: #d4d4d4;
+    color: #222;
+    box-shadow: 0 0 6px #bbb;
+}
+
+.subject-tab.active {
+    background: #ff9f1c;
+    color: #fff;
+    font-weight: 700;
+    box-shadow: 0 0 15px #ff9f1ccc;
+}
+
+/* Checklist tab at bottom */
+#checklist-tab {
+    padding: 16px 24px;
+    background: #ffd784;
+    color: #4a2c00;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1.25rem;
+    text-align: center;
+    border-top: 1px solid #f1c463;
+    user-select: none;
+    transition: background-color 0.3s ease;
+    box-shadow: inset 0 -3px 8px #f1c463aa;
+}
+
+#checklist-tab:hover,
+#checklist-tab.active {
+    background: #ff9f1c;
+    color: #fff;
+    box-shadow: 0 0 15px #ff9f1ccc;
+}
+
+/* Main content */
+main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    color: #222;
+    overflow: hidden;
+    padding: 1.4rem 1.8rem;
+}
+
+/* Header with subject title + topic tabs */
+#header {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#current-subject {
+    font-size: 2.1rem;
+    margin: 0;
+    color: #ff9f1c;
+    user-select: none;
+    font-weight: 700;
+}
+
+/* Horizontal topic tabs */
+.horizontal-tabs {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #aaa transparent;
+}
+
+.horizontal-tabs::-webkit-scrollbar {
+    height: 8px;
+}
+
+.horizontal-tabs::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.horizontal-tabs::-webkit-scrollbar-thumb {
+    background-color: #aaa;
+    border-radius: 4px;
+}
+
+.topic-tab {
+    padding: 10px 18px;
+    border-radius: 24px;
+    background: #f0f0f0;
+    color: #666;
+    cursor: pointer;
+    white-space: nowrap;
+    user-select: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    box-shadow: 0 0 5px transparent;
+}
+
+.topic-tab:hover {
+    background: #ffd784;
+    color: #4a2c00;
+    box-shadow: 0 0 12px #ff9f1cbb;
+}
+
+.topic-tab.active {
+    background: #ff9f1c;
+    color: #fff;
+    box-shadow: 0 0 15px #ff9f1ccc;
+}
+
+/* Content area */
+#content-area {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 14px;
+    background: #fffbea;
+    border-radius: 14px;
+    box-shadow: inset 0 0 18px #ffefb0cc;
+    transition: opacity 0.3s ease;
+    color: #4a2c00;
+    font-family: 'Noto Kufi Arabic', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    text-align: start;
+}
+
+/* Content fade animation */
+.content-fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.content-fade-in {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Checklist styling in content area (checklist tab only) */
+#content-area h2 {
+    color: #ff9f1c;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.6rem;
+    user-select: none;
+}
+
+.checklist-subject {
+    border: 1px solid #ffcb70;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    box-shadow: 0 0 8px #ffcb7033;
+    background: #fff6d6;
+    user-select: none;
+}
+
+.checklist-subject>button {
+    width: 100%;
+    background: #ffcb70;
+    border: none;
+    padding: 12px 18px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #4a2c00;
+    cursor: pointer;
+    text-align: right;
+    direction: rtl;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 12px 12px 0 0;
+    transition: background-color 0.3s ease;
+}
+
+.checklist-subject>button:hover {
+    background: #ffb500;
+    color: #fff;
+}
+
+.checklist-subject>button:focus {
+    outline: 3px solid #ff9f1c;
+}
+
+.checklist-subject>ul {
+    list-style: none;
+    margin: 0;
+    padding: 0 1rem 1rem 1rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+}
+
+.checklist-subject.expanded>ul {
+    max-height: 1000px;
+    /* large enough to show all */
+}
+
+.checklist-subject li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+    font-weight: 600;
+    color: #4a2c00;
+}
+
+.checklist-subject li input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+/* Indented lists inside content area */
+#content-area ul,
+#content-area ol {
+    margin-right: 1.4rem;
+    margin-left: 0;
+    padding-right: 0;
+    padding-left: 1.2rem;
+    color: #7f5900;
+}
+
+/* Scrollbar styling in content */
+#content-area::-webkit-scrollbar {
+    width: 10px;
+}
+
+#content-area::-webkit-scrollbar-track {
+    background: #fffbea;
+}
+
+#content-area::-webkit-scrollbar-thumb {
+    background: #ffcb70;
+    border-radius: 5px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 900px) {
+    #sidebar {
+        width: 60px;
+        padding-top: 8px;
+    }
+
+    .subject-tab {
+        font-size: 0;
+        padding: 14px 0;
+    }
+
+    .subject-tab::before {
+        content: attr(data-abbr);
+        font-size: 1.4rem;
+        color: #666;
+        display: block;
+        text-align: center;
+    }
+
+    #checklist-tab {
+        font-size: 1.7rem;
+        padding: 14px 0;
+    }
+
+    #header {
+        font-size: 1.3rem;
+    }
+
+    #current-subject {
+        font-size: 1.7rem;
+    }
+
+    .horizontal-tabs {
+        gap: 0.5rem;
+    }
+
+    .topic-tab {
+        font-size: 0.95rem;
+        padding: 8px 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    #app {
+        flex-direction: column;
+    }
+
+    #sidebar {
+        width: 100%;
+        height: 56px;
+        border-left: none;
+        border-top: 1px solid #ccc;
+        flex-direction: row;
+        padding: 0 10px;
+        box-shadow: inset 0 0 8px #bbb;
+    }
+
+    .vertical-tabs {
+        flex-direction: row;
+        flex-grow: 1;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scrollbar-width: thin;
+    }
+
+    .subject-tab {
+        font-size: 1rem;
+        padding: 0 14px;
+        flex-shrink: 0;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .subject-tab::before {
+        content: none;
+    }
+
+    #checklist-tab {
+        font-size: 1.5rem;
+        padding: 0 14px;
+        flex-shrink: 0;
+        border-top: none;
+        border-left: 1px solid #f1c463;
+    }
+
+    main {
+        padding: 1rem 1rem 2rem 1rem;
+    }
+
+    #header {
+        flex-direction: column;
+        gap: 6px;
+    }
+}
+
+.content-fade-out {
+    opacity: 0;
+    transform: translateX(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.content-fade-in {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Fast, smooth content animations */
+.content-animating {
+    opacity: 0;
+    transform: translateX(40px) scale(0.98);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.content-visible {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+/* Subject completion markers */
+.subject-tab .marker {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #0f0;
+    border-radius: 50%;
+    margin-left: 8px;
+}
+
+.topic-tab .marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: #0f0;
+    border-radius: 50%;
+    margin-left: 6px;
+}
+
+/* Sidebar toggle button - hidden on large screens */
+#menu-toggle {
+    display: none;
+    background-color: #ff9f1c;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+/* Sidebar default (visible) */
+#sidebar {
+    width: 200px;
+    background-color: #fff;
+    padding: 15px;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+/* Hide sidebar on small screens */
+@media (max-width: 768px) {
+    #menu-toggle {
+        display: block;
+    }
+
+    #sidebar {
+        position: fixed;
+        right: 0;
+        top: 0;
+        height: 100%;
+        transform: translateX(100%);
+        z-index: 1000;
+    }
+
+    #sidebar.open {
+        transform: translateX(0);
+    }
+
+    #content {
+        padding: 10px;
+        font-size: 1rem;
+    }
+
+    .topic-tab {
+        font-size: 0.9rem;
+        padding: 8px 10px;
+    }
+}
+
+
+/* Desktop font sizes */
+.content-area {
+    font-size: 1.1rem;
+}
+
+/* Mobile font sizes */
+@media (max-width: 768px) {
+    .content-area {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    #sidebar {
+        width: 75%;
+    }
+
+    #menu-toggle {
+        font-size: 1.4rem;
+    }
+}
+
+/* Sidebar subject tabs */
+.subject-tab {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip; /* Remove ellipsis */
+    font-weight: 600;
+    transition: font-size 0.3s ease;
+  }
+  
+  /* On small screens, reduce font size to fit */
+  @media (max-width: 768px) {
+    #sidebar {
+      width: 200px; /* or whatever width you want */
+    }
+  
+    .subject-tab {
+      font-size: 0.85rem;  /* Smaller font to fit full text */
+      padding: 8px 10px;
+    }
+  }
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0; right: 0; bottom: 0; left: 0;
+    background-color: rgba(0,0,0,0.3);
+    z-index: 998;
+    transition: opacity 0.3s ease;
+  }
+  
+  #overlay.show {
+    display: block;
+  }
+
+  .question {
+    color: #0080ff; /* Dark blue color for questions */
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .answer {
+    margin-left: 20px; /* Indent answers */
+    color: #34495e; /* Slightly lighter color for answers */
+    margin-bottom: 15px;
+  }
