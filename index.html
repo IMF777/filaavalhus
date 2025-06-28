@@ -1,35 +1,69 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl" translate="no">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="google" content="notranslate" />
-    <title>Adhab Study</title>
-    <link rel="stylesheet" href="styles.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate"></meta>
+    <title>Filaavalhus Study Tool</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="icon.png">
+    
+    
 </head>
-
 <body>
-    <div id="app">
-        <div id="overlay"></div>
-        <button id="menu-toggle">☰</button>
-        <aside id="sidebar">
-            <nav id="subject-tabs" class="vertical-tabs" aria-label="Subjects"></nav>
-            <div id="checklist-tab" class="checklist-tab">📋 Checklist</div>
-        </aside>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-book-open"></i>
+                    <span>Filaavalhus Study Tool v1.2.1</span>
+                </div>
+                <button class="checklist-btn" id="checklistToggle">
+                    <i class="fas fa-tasks"></i>
+                    <span>Checklist</span>
+                </button>
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </header>
+
+        <div class="mobile-tabs" id="mobileTabs"></div>
+
         <main>
-            <header id="header">
-                <h1 id="current-subject">اختر مادة</h1>
-                <nav id="topic-tabs" class="horizontal-tabs" aria-label="Topics"></nav>
-            </header>
-            <section id="content-area" tabindex="0" aria-live="polite" aria-atomic="true"></section>
-            <section id="checklist-home" class="checklist-home"></section>
+            <div class="sidebar" id="sidebar">
+                <div class="subject-tabs" id="subjectTabs"></div>
+            </div>
+
+            <div class="content-area" id="contentArea">
+                <div class="content-header">
+                    <h1 class="subject-title" id="subjectTitle"></h1>
+                </div>
+                <h2 class="topic-title" id="topicTitle"></h2>
+                <div class="content-text" id="contentText"></div>
+            </div>
         </main>
     </div>
 
-    <script src="data.js"></script>
-    <script src="index.js"></script>
-</body>
+    <div class="overlay" id="overlay"></div>
 
+    <div class="checklist-panel" id="checklistPanel">
+        <div class="checklist-header">
+            <h2 class="checklist-title">قائمة التقدم الدراسي</h2>
+            <button class="close-checklist" id="closeChecklist">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">0% مكتمل</div>
+        </div>
+        <div id="checklistContent"></div>
+    </div>
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
 </html>
